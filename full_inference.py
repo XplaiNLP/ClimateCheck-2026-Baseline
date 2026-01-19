@@ -18,9 +18,8 @@ import re
 from vllm import LLM, SamplingParams
 import gc
 
-from codecarbon import EmissionsTracker
-tracker = EmissionsTracker()
-tracker.start()
+from codecarbon import track_emissions
+
 
 #os.environ["VLLM_USE_V1"] = "1"
 os.environ["VLLM_ENABLE_V1_MULTIPROCESSING"] = "0"
@@ -169,7 +168,7 @@ def clean_and_validate(pred_text):
 #        return "0_0"
     return ";".join(sorted(list(set(valid_found))))
 
-
+@track_emissions(project_name="ClimateCheck2026", save_to_api=True)
 def main():
     results_label = "predictions"
 
@@ -307,5 +306,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-tracker.stop()
