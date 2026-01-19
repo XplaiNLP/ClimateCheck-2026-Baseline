@@ -1,0 +1,13 @@
+pandas
+numpy
+tqdm
+scikit-learn
+nltk
+rank-bm25
+torch
+transformers
+datasets
+sentence-transformers
+trl
+vllm
+unsloth
